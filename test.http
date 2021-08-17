@@ -1,0 +1,4 @@
+@url=http://localhost:3001
+
+########
+GET {{url}}/api/version
