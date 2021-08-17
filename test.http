@@ -1,4 +1,5 @@
-@url=http://localhost:3001
+#@url=http://localhost:3001
+@url=https://serverless-inlxkldana-de.a.run.app
 
 ########
 GET {{url}}/api/version
