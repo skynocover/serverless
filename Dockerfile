@@ -24,7 +24,7 @@ WORKDIR /usr/src/app
 COPY . .
 RUN yarn install
 RUN yarn global add @vercel/ncc
-RUN ncc build app.js -o dist
+RUN ncc build . -o dist
 
 # --------------> The production image
 FROM node:lts-alpine
