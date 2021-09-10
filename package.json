@@ -4,7 +4,8 @@
   "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "start": "ts-node src/index.ts"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
