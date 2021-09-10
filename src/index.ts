@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express, { Request, Response, NextFunction } from 'express';
+import { test } from './routes/test';
 
 const app = express();
 app.use(express.json());
@@ -8,6 +9,8 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/api/version', (req, res) => {
   res.json({ env: process.env.NODE_ENV, version: process.env.VERSION });
 });
+
+app.use('/api', test);
 
 app.listen(process.env.PORT, () => {
   console.log(new Date(), `env: ${process.env.NODE_ENV}`);
