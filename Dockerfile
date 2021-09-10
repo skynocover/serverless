@@ -23,7 +23,7 @@ FROM node:latest AS build
 WORKDIR /usr/src/app
 COPY . .
 RUN yarn install
-RUN yarn install -g @vercel/ncc
+RUN yarn global add @vercel/ncc
 RUN ncc build app.js -o dist
 
 # --------------> The production image
