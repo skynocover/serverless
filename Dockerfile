@@ -32,5 +32,5 @@ ENV NODE_ENV production
 USER node
 WORKDIR /usr/src/app
 COPY --chown=node:node --from=build /usr/src/app/dist /usr/src/app/dist
-CMD ["node", "/usr/src/app/dist/app.js"]
+CMD ["node", "/usr/src/app/dist/index.js"]
 
