@@ -1,12 +1,12 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { createPoolAndEnsureSchema, getVoteCount, getVotes, insertVote } from '../database/db';
 // import { logger } from '../utils/logger';
-import { pool2 } from '../database/db';
+import { Pool2 } from '../database/db';
 
 const routes = express.Router();
 
 routes.get('/db2', async (req, res) => {
-  let pool = pool2 || (await createPoolAndEnsureSchema('2'));
+  let pool = Pool2() || (await createPoolAndEnsureSchema('2'));
   try {
     // Query the total count of "TABS" from the database.
     const tabsResult = await getVoteCount(pool, 'TABS');
@@ -47,7 +47,7 @@ routes.get('/db2', async (req, res) => {
 });
 
 routes.post('/db2', async (req, res) => {
-  const pool = pool2 || (await createPoolAndEnsureSchema('2'));
+  const pool = Pool2() || (await createPoolAndEnsureSchema('2'));
   // Get the team from the request and record the time of the vote.
   const { team } = req.body;
   const timestamp = new Date();

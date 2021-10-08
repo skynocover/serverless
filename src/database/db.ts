@@ -3,8 +3,10 @@ import { Knex, knex } from 'knex';
 import { createPool } from '../utils/dbpool';
 // import { logger } from '../index';
 
-export let pool1: Knex<any, unknown[]> | null;
-export let pool2: Knex<any, unknown[]> | null;
+let pool1: Knex<any, unknown[]> | null;
+let pool2: Knex<any, unknown[]> | null;
+export const Pool1 = () => pool1;
+export const Pool2 = () => pool2;
 
 const ensureSchema = async (pool: Knex<any, unknown[]>) => {
   const hasTable = await pool.schema.hasTable('votes');

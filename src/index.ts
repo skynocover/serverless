@@ -2,8 +2,8 @@ import 'dotenv/config';
 import express, { Request, Response, NextFunction } from 'express';
 import { test } from './routes/test';
 import process from 'process';
-import winston from 'winston';
-import { LoggingWinston } from '@google-cloud/logging-winston';
+// import winston from 'winston';
+// import { LoggingWinston } from '@google-cloud/logging-winston';
 
 import { Knex, knex } from 'knex';
 import { createPoolAndEnsureSchema, getVoteCount, getVotes, insertVote } from './database/db';
@@ -11,6 +11,7 @@ import { createPool } from '../src/utils/dbpool';
 // import { logger } from './utils/logger';
 import { db1 } from './routes/db1';
 import { db2 } from './routes/db2';
+import { Pool1, Pool2 } from './database/db';
 
 const app = express();
 
@@ -27,13 +28,15 @@ app.use((req, res, next) => {
 });
 
 app.get('/api/version', (req, res) => {
-  res.json({ env: process.env.NODE_ENV, version: process.env.VERSION });
-});
-
-const loggingWinston = new LoggingWinston();
-export const logger = winston.createLogger({
-  level: 'info',
-  transports: [new winston.transports.Console(), loggingWinston],
+  res.json({
+    env: process.env.NODE_ENV,
+    version: process.env.VERSION,
+    db: {
+      name1: process.env.CLOUD_SQL_CONNECTION_NAME1,
+      name2: process.env.CLOUD_SQL_CONNECTION_NAME2,
+    },
+    pool: { pool1: Pool1(), pool2: Pool2() },
+  });
 });
 
 app.use('/api', test);
