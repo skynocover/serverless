@@ -32,7 +32,7 @@ routes.get('/db2', async (req, res) => {
     } else {
       leaderMessage = 'TABS and SPACES are evenly matched!';
     }
-    res.render('index.pug', {
+    res.render('index2.pug', {
       votes: votes,
       tabsCount: tabsTotalVotes,
       spacesCount: spacesTotalVotes,
