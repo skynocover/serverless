@@ -1,6 +1,10 @@
 # @url=http://localhost:3001
-@url=https://serverless-inlxkldana-de.a.run.app
+# @url=https://serverless-inlxkldana-de.a.run.app
+@url=http://localhost:8080
 # @url=https://serverless.credot.ml
+
+################################################################
+GET {{url}}/api/host
 
 ########
 GET {{url}}/api/version

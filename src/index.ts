@@ -9,9 +9,9 @@ import { Knex, knex } from 'knex';
 import { createPoolAndEnsureSchema, getVoteCount, getVotes, insertVote } from './database/db';
 import { createPool } from '../src/utils/dbpool';
 // import { logger } from './utils/logger';
-import { db1 } from './routes/db1';
-import { db2 } from './routes/db2';
-import { Pool1, Pool2 } from './database/db';
+// import { db1 } from './routes/db1';
+// import { db2 } from './routes/db2';
+// import { Pool1, Pool2 } from './database/db';
 
 const app = express();
 
@@ -35,13 +35,18 @@ app.get('/api/version', (req, res) => {
       name1: process.env.CLOUD_SQL_CONNECTION_NAME1,
       name2: process.env.CLOUD_SQL_CONNECTION_NAME2,
     },
-    pool: { pool1: Pool1(), pool2: Pool2() },
+    // pool: { pool1: Pool1(), pool2: Pool2() },
   });
 });
 
+app.get('/api/host', (req, res) => {
+  const host = req.get('host');
+  res.json({ host });
+});
+
 app.use('/api', test);
-app.use(db1);
-app.use(db2);
+// app.use(db1);
+// app.use(db2);
 
 app.listen(process.env.PORT, () => {
   console.log(new Date(), `env: ${process.env.NODE_ENV}`);
